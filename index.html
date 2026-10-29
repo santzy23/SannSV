@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SannSV - TikTok Downloader</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;background:#08090d;color:white;
+  font-family:Arial,sans-serif;min-height:100vh;
+  display:flex;justify-content:center;align-items:center;
+  padding:20px
+}
+main{width:100%;max-width:440px}
+.logo{font-size:30px;font-weight:bold;letter-spacing:-1px}
+.logo span{color:#ff3867}
+.tag{color:#9295a3;margin-top:9px;font-size:14px}
+.card{
+  margin-top:32px;background:#12141c;
+  border:1px solid #272a36;border-radius:20px;padding:22px
+}
+h2{font-size:21px;margin:0 0 10px}
+.desc{color:#9b9eac;font-size:14px;line-height:1.6}
+input{
+  width:100%;padding:15px;margin-top:20px;
+  border:1px solid #343746;border-radius:12px;
+  background:#090a10;color:white;font-size:14px;outline:none
+}
+input:focus{border-color:#ff3867}
+button{
+  width:100%;padding:15px;margin-top:12px;
+  border:0;border-radius:12px;background:#ff3867;
+  color:white;font-weight:bold;font-size:15px
+}
+#status{font-size:13px;color:#b9bbc7;line-height:1.6}
+footer{text-align:center;color:#777b89;font-size:12px;margin-top:25px}
+</style>
+</head>
+<body>
+<main>
+  <div class="logo">Sann<span>SV</span></div>
+  <div class="tag">TikTok Video Downloader</div>
+  <section class="card">
+    <h2>Download video TikTok</h2>
+    <p class="desc">Tempel tautan video TikTok yang ingin kamu simpan.</p>
+    <input id="url" type="url" placeholder="Tempel link TikTok di sini...">
+    <button onclick="processLink()">Proses Link ↗</button>
+    <p id="status"></p>
+  </section>
+  <footer>© 2026 SannSV · Made with care</footer>
+</main>
+<script>
+function processLink(){
+  const input=document.getElementById('url');
+  const status=document.getElementById('status');
+  const value=input.value.trim();
+  if(!value){
+    status.textContent='Masukkan link TikTok terlebih dahulu.';
+    return;
+  }
+  try{
+    const link=new URL(value);
+    if(!['tiktok.com','www.tiktok.com','vm.tiktok.com',
+    'vt.tiktok.com','m.tiktok.com'].includes(link.hostname)){
+      status.textContent='Link harus berasal dari TikTok.';
+      return;
+    }
+    status.textContent='Link valid! Tampilan sudah siap. Sistem pengunduhan perlu dihubungkan ke backend agar video bisa diunduh.';
+  }catch(e){
+    status.textContent='Link tidak valid. Periksa kembali.';
+  }
+}
+</script>
+</body>
+</html>
